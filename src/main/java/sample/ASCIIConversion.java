@@ -27,7 +27,7 @@ public class ASCIIConversion {
 
     public String[][] createRgbMatrix() {
 
-        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 5, (int) sourceImage.getHeight() / 5, true);
+        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 20, (int) sourceImage.getHeight() / 20, true);
 
         int width = (int) resizedImage.getWidth();
         int height = (int) resizedImage.getHeight();
@@ -60,7 +60,7 @@ public class ASCIIConversion {
 
     public int[][] createBrightnessMatrix() {
 
-        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 5, (int) sourceImage.getHeight() / 5, true);
+        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 20, (int) sourceImage.getHeight() / 20, true);
 
         int width = (int) resizedImage.getWidth();
         int height = (int) resizedImage.getHeight();
@@ -76,9 +76,9 @@ public class ASCIIConversion {
                 String modifiedElement = rgbMatrix[i][j].replace("(", "").replace(")", "");
                 String[] valuesAsArray = modifiedElement.split(",");
 
-                int first = Integer.valueOf(valuesAsArray[0]);
-                int second = Integer.valueOf(valuesAsArray[1].trim());
-                int third = Integer.valueOf(valuesAsArray[2].trim());
+                int first = Integer.parseInt(valuesAsArray[0]);
+                int second = Integer.parseInt(valuesAsArray[1].trim());
+                int third = Integer.parseInt(valuesAsArray[2].trim());
 
 
                 brightnessMatrix[i][j] = (first + second + third) / 3;
@@ -90,7 +90,7 @@ public class ASCIIConversion {
 
     public char[][] createAsciiMatrix() {
 
-        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 5, (int) sourceImage.getHeight() / 5, true);
+        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 20, (int) sourceImage.getHeight() / 20, true);
 
         int width = (int) resizedImage.getWidth();
         int height = (int) resizedImage.getHeight();
@@ -101,17 +101,29 @@ public class ASCIIConversion {
 
         for (int i = 0; i < brightnessMatrix.length; i++) {
 
-            for (int j = 0; j < brightnessMatrix[j].length; j++) {
+            for (int j = 0; j < brightnessMatrix[i].length; j++) {
 
-double percentage = brightnessMatrix[i][j] / 255;
+                double percentage = Math.round(((double) brightnessMatrix[i][j] / 255) * 100);
 
+
+                for (int n = 0; n < asciiCharacters.length; n++) {
+
+
+                    double nextPercentage = Math.round(((double) n / asciiMatrix.length) * 100);
+
+                    if (percentage == nextPercentage) {
+                        asciiMatrix[i][j] = asciiCharacters[n];
+
+                    }
+
+                }
 
 
             }
 
         }
 
-        return  asciiMatrix;
+        return asciiMatrix;
     }
 
 

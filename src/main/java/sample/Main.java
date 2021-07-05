@@ -1,31 +1,14 @@
 package sample;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
-import javafx.scene.image.*;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelReader;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import org.imgscalr.Scalr;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 public class Main extends Application {
 
@@ -35,7 +18,7 @@ public class Main extends Application {
         Image sourceImage = new Image("file:ascii-pineapple.jpg");
         ASCIIConversion test = new ASCIIConversion();
 
-        Image resizedImage = test.resize(sourceImage, (int) sourceImage.getWidth() /5, (int) sourceImage.getHeight() / 5, true);
+        Image resizedImage = test.resize(sourceImage, (int) sourceImage.getWidth() / 5, (int) sourceImage.getHeight() / 5, true);
 
 
         int width = (int) resizedImage.getWidth();
@@ -44,14 +27,27 @@ public class Main extends Application {
         Canvas canvas = new Canvas(width, height);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.BLACK);
-        gc.fillRect(0,0, width, height);
+        gc.fillRect(0, 0, width, height);
 
 
         PixelReader targetImage = resizedImage.getPixelReader();
 
         ImageView imgV = new ImageView(resizedImage);
 
+        char[][] testing = test.createAsciiMatrix();
 
+        for (int i = 0; i < testing.length; i++) {
+            for (int j = 0; j < testing[j].length; j++) {
+
+                for (int n = 0; n < 3; n++) {
+                    System.out.print(testing[i][j]);
+                    ;
+                }
+
+
+            }
+            System.out.println();
+        }
 
         //   Arrays.stream(ascii).forEach(chars -> System.out.println(chars));
 /* gc.setFill(Color.WHITE);
@@ -83,12 +79,11 @@ StringBuilder ss = new StringBuilder();
 //label.setText(ss.toString());
 
 
-
-      //  layout.getChildren().add(label);
-     //   Scene s = new Scene(layout);
-      //  primaryStage.setTitle("ASCII");
-   //     primaryStage.setScene(s);
-   //     primaryStage.show();
+        //  layout.getChildren().add(label);
+        //   Scene s = new Scene(layout);
+        //  primaryStage.setTitle("ASCII");
+        //     primaryStage.setScene(s);
+        //     primaryStage.show();
     }
 
 
