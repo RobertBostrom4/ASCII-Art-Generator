@@ -2,11 +2,19 @@ package sample;
 
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.imgscalr.Scalr;
 
@@ -27,87 +35,61 @@ public class Main extends Application {
         Image sourceImage = new Image("file:ascii-pineapple.jpg");
         ASCIIConversion test = new ASCIIConversion();
 
-        Image resizedImage = test.resize(sourceImage, (int) sourceImage.getWidth() / 4, (int) sourceImage.getHeight() / 4, true);
-
-        String asciiCharacters = "\"`^\\\",:;Il!i~+_-?][}{1)(|\\\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$\"";
-        char[] asciiAsArray = asciiCharacters.toCharArray();
+        Image resizedImage = test.resize(sourceImage, (int) sourceImage.getWidth() /5, (int) sourceImage.getHeight() / 5, true);
 
 
         int width = (int) resizedImage.getWidth();
         int height = (int) resizedImage.getHeight();
 
-        int[][] brightnessMatrix = new int[width][height];
+        Canvas canvas = new Canvas(width, height);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0,0, width, height);
+
 
         PixelReader targetImage = resizedImage.getPixelReader();
 
         ImageView imgV = new ImageView(resizedImage);
 
-        for (int i = 0; i < width; i++) {
-
-            for (int j = 0; j < height; j++) {
 
 
-                Color newColor = targetImage.getColor(i, j);
-
-                double red = newColor.getRed();
-                double green = newColor.getGreen();
-                double blue = newColor.getBlue();
-
-
-                double colorBrightness = newColor.getBrightness() * 100;
-
-                brightnessMatrix[i][j] = Math.round((int) colorBrightness);
-
-            }
-
-        }
-        char[][] ascii = new char[width][height];
-        for (int i = 0; i < width; i++) {
-
-            for (int j = 0; j < height; j++) {
-
-
-                int value = brightnessMatrix[i][j];
-
-
-                for (int n = 0; n < asciiAsArray.length; n++) {
-                    double percentage = Math.round((double) n / asciiAsArray.length * 100);
-
-
-                    if (value == (int) percentage) {
-                        ascii[i][j] = asciiAsArray[n];
-
-                    }
-
-                }
-            }
-        }
-      //   Arrays.stream(ascii).forEach(chars -> System.out.println(chars));
-
-     /*   for (int i = 0; i < ascii.length; i++) {
+        //   Arrays.stream(ascii).forEach(chars -> System.out.println(chars));
+/* gc.setFill(Color.WHITE);
+        Label label = new Label();
+        label.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+        label.setTextFill(Color.WHITE);
+        label.setFont(new Font("Arial",6));
+StringBuilder ss = new StringBuilder();
+        for (int i = 0; i < ascii.length; i++) {
 
 
             for (int j = 0; j < ascii[i].length; j++) {
+            //    gc.fillText(String.valueOf(ascii[0][0]), i, j);
 
                 for (int n = 0; n < 3; n++) {
-                    System.out.print(ascii[i][j]);
+               //   System.out.print(ascii[i][j]);
+                    ss.append(ascii[i][j]);
+
                 }
 
 
             }
-            System.out.println("");
+            ss.append("\n");
         }
 
-      */
-            Pane layout = new Pane();
+*/
+        Pane layout = new Pane();
+
+//label.setText(ss.toString());
 
 
-            layout.getChildren().add(imgV);
-            Scene s = new Scene(layout);
-            primaryStage.setTitle("ASCII");
-            primaryStage.setScene(s);
-            primaryStage.show();
-        }
+
+      //  layout.getChildren().add(label);
+     //   Scene s = new Scene(layout);
+      //  primaryStage.setTitle("ASCII");
+   //     primaryStage.setScene(s);
+   //     primaryStage.show();
+    }
 
 
     public static void main(String[] args) {
