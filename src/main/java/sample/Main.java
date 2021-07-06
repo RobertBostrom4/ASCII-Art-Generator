@@ -19,7 +19,7 @@ public class Main extends Application {
         Image sourceImage = new Image("file:ascii-pineapple.jpg");
         ASCIIConversion test = new ASCIIConversion();
 
-        Image resizedImage = test.resize(sourceImage, (int) sourceImage.getWidth() / 10, (int) sourceImage.getHeight() / 10, true);
+        Image resizedImage = test.resize(sourceImage, (int) sourceImage.getWidth() / 10, (int) sourceImage.getHeight() / 10);
 
 
         int width = (int) resizedImage.getWidth();

@@ -19,7 +19,7 @@ public class ASCIIConversion {
         this.asciiCharacters = "\"`^\\\",:;Il!i~+_-?][}{1)(|\\\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$\"".toCharArray();
     }
 
-    public Image resize(Image source, int targetWidth, int targetHeight, boolean preserveRatio) {
+    public Image resize(Image source, int targetWidth, int targetHeight) {
 
 
         int width = (int) source.getWidth();
@@ -41,27 +41,14 @@ public class ASCIIConversion {
         for (int i = 0; i < targetWidth; i++) {
 
             for (int j = 0; j < targetHeight; j++) {
-/*
-imgRescaled.getGraphics().getColor()
-            //    Color newColor = imgRescaled.getGraphics().getColor();
 
-                double red = newColor.getRed();
-                double green = newColor.getGreen();
-                double blue = newColor.getBlue();
-*/
-                writer.setArgb( i, j, imgRescaled.getRGB(i, j));
+
+                writer.setArgb(i, j, imgRescaled.getRGB(i, j));
 
 
             }
 
         }
-        /*
-        ImageView i = new ImageView(source);
-        i.setPreserveRatio(preserveRatio);
-        i.setFitWidth(targetWidth);
-        i.setFitHeight(targetHeight);
-
-*/
 
 
         return newImage;
@@ -69,7 +56,7 @@ imgRescaled.getGraphics().getColor()
 
     public String[][] createRgbMatrix() {
 
-        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 5, (int) sourceImage.getHeight() / 5, true);
+        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 5, (int) sourceImage.getHeight() / 5);
 
         int width = (int) resizedImage.getWidth();
         int height = (int) resizedImage.getHeight();
@@ -101,7 +88,7 @@ imgRescaled.getGraphics().getColor()
 
     public int[][] createBrightnessMatrix() {
 
-        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 4, (int) sourceImage.getHeight() / 4, true);
+        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 4, (int) sourceImage.getHeight() / 4);
 
         int width = (int) resizedImage.getWidth();
         int height = (int) resizedImage.getHeight();
@@ -131,7 +118,7 @@ imgRescaled.getGraphics().getColor()
 
     public char[][] createAsciiMatrix() {
 
-        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 4, (int) sourceImage.getHeight() / 4, true);
+        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 4, (int) sourceImage.getHeight() / 4);
 
         int width = (int) resizedImage.getWidth();
         int height = (int) resizedImage.getHeight();
