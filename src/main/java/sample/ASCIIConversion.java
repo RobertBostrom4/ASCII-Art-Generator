@@ -1,9 +1,13 @@
 package sample;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.PixelReader;
+import javafx.scene.image.*;
 import javafx.scene.paint.Color;
+import org.imgscalr.Scalr;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class ASCIIConversion {
 
@@ -17,17 +21,55 @@ public class ASCIIConversion {
 
     public Image resize(Image source, int targetWidth, int targetHeight, boolean preserveRatio) {
 
+
+        int width = (int) source.getWidth();
+        int height = (int) source.getHeight();
+
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("C:\\Users\\rober\\IdeaProjects\\ASCII Art generator\\ascii-pineapple.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        BufferedImage imgRescaled = Scalr.resize(img, targetWidth, targetHeight);
+
+
+        PixelReader targetImage = source.getPixelReader();
+        WritableImage newImage = new WritableImage(targetWidth, targetHeight);
+
+        PixelWriter writer = newImage.getPixelWriter();
+        for (int i = 0; i < targetWidth; i++) {
+
+            for (int j = 0; j < targetHeight; j++) {
+/*
+imgRescaled.getGraphics().getColor()
+            //    Color newColor = imgRescaled.getGraphics().getColor();
+
+                double red = newColor.getRed();
+                double green = newColor.getGreen();
+                double blue = newColor.getBlue();
+*/
+                writer.setArgb(i, j, imgRescaled.getRGB(i, j));
+
+
+            }
+
+        }
+        /*
         ImageView i = new ImageView(source);
         i.setPreserveRatio(preserveRatio);
         i.setFitWidth(targetWidth);
         i.setFitHeight(targetHeight);
 
-        return i.snapshot(null, null);
+*/
+
+
+        return newImage;
     }
 
     public String[][] createRgbMatrix() {
 
-        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 20, (int) sourceImage.getHeight() / 20, true);
+        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 15, (int) sourceImage.getHeight() / 15, false);
 
         int width = (int) resizedImage.getWidth();
         int height = (int) resizedImage.getHeight();
@@ -50,7 +92,6 @@ public class ASCIIConversion {
 
                 pixelMatrix[i][j] = "(" + red + ", " + green + ", " + blue + ")";
 
-
             }
 
         }
@@ -60,7 +101,7 @@ public class ASCIIConversion {
 
     public int[][] createBrightnessMatrix() {
 
-        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 20, (int) sourceImage.getHeight() / 20, true);
+        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 15, (int) sourceImage.getHeight() / 15, false);
 
         int width = (int) resizedImage.getWidth();
         int height = (int) resizedImage.getHeight();
@@ -90,7 +131,7 @@ public class ASCIIConversion {
 
     public char[][] createAsciiMatrix() {
 
-        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 20, (int) sourceImage.getHeight() / 20, true);
+        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 15, (int) sourceImage.getHeight() / 15, false);
 
         int width = (int) resizedImage.getWidth();
         int height = (int) resizedImage.getHeight();
@@ -99,9 +140,9 @@ public class ASCIIConversion {
         char[][] asciiMatrix = new char[width][height];
 
 
-        for (int i = 0; i < brightnessMatrix.length; i++) {
+        for (int i = 0; i < width; i++) {
 
-            for (int j = 0; j < brightnessMatrix[i].length; j++) {
+            for (int j = 0; j < height; j++) {
 
                 double percentage = Math.round(((double) brightnessMatrix[i][j] / 255) * 100);
 
