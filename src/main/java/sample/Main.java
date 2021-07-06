@@ -38,21 +38,24 @@ public class Main extends Application {
         char[][] testing = test.createAsciiMatrix();
         int[][] testr = test.createBrightnessMatrix();
         char[][] testi = test.createAsciiMatrix();
+        String[][] teso = test.createRgbMatrix();
 
-       // System.out.println(testing[0][0]);
-      //  System.out.println(testi[0][0]);
+        System.out.println(teso[0][0]);
+        System.out.println(testing[0][0]);
+        System.out.println(testi[0][0]);
+
         for (int i = 0; i < testing.length; i++) {
             for (int j = 0; j < testing[j].length; j++) {
 
 
                 for (int n = 0; n < 3; n++) {
-                 //   System.out.print(testing[i][j]);
+                    //   System.out.print(testing[i][j]);
 
                 }
 
 
             }
-        //    System.out.println();
+            //    System.out.println();
         }
         // System.out.println(testing.length);
 
@@ -86,11 +89,11 @@ StringBuilder ss = new StringBuilder();
 //label.setText(ss.toString());
 
 
-    //     layout.getChildren().add(imgV);
-      //    Scene s = new Scene(layout);
+        //     layout.getChildren().add(imgV);
+        //    Scene s = new Scene(layout);
         //  primaryStage.setTitle("ASCII");
-    //       primaryStage.setScene(s);
-    //         primaryStage.show();
+        //       primaryStage.setScene(s);
+        //         primaryStage.show();
     }
 
 

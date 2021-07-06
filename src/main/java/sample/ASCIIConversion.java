@@ -49,7 +49,7 @@ imgRescaled.getGraphics().getColor()
                 double green = newColor.getGreen();
                 double blue = newColor.getBlue();
 */
-                writer.setArgb(i, j, imgRescaled.getRGB(i, j));
+                writer.setArgb( i, j, imgRescaled.getRGB(i, j));
 
 
             }
@@ -69,7 +69,7 @@ imgRescaled.getGraphics().getColor()
 
     public String[][] createRgbMatrix() {
 
-        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 15, (int) sourceImage.getHeight() / 15, false);
+        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 5, (int) sourceImage.getHeight() / 5, true);
 
         int width = (int) resizedImage.getWidth();
         int height = (int) resizedImage.getHeight();
@@ -101,7 +101,7 @@ imgRescaled.getGraphics().getColor()
 
     public int[][] createBrightnessMatrix() {
 
-        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 15, (int) sourceImage.getHeight() / 15, false);
+        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 4, (int) sourceImage.getHeight() / 4, true);
 
         int width = (int) resizedImage.getWidth();
         int height = (int) resizedImage.getHeight();
@@ -131,7 +131,7 @@ imgRescaled.getGraphics().getColor()
 
     public char[][] createAsciiMatrix() {
 
-        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 15, (int) sourceImage.getHeight() / 15, false);
+        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 4, (int) sourceImage.getHeight() / 4, true);
 
         int width = (int) resizedImage.getWidth();
         int height = (int) resizedImage.getHeight();
