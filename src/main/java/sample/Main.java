@@ -57,7 +57,6 @@ public class Main extends Application {
             }
             //    System.out.println();
         }
-        // System.out.println(testing.length);
 
         //   Arrays.stream(ascii).forEach(chars -> System.out.println(chars));
 /* gc.setFill(Color.WHITE);
