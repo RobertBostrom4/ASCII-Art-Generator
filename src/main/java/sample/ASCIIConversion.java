@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class ASCIIConversion {
 
-    private final Image sourceImage;
+    private Image sourceImage;
     private final char[] asciiCharacters;
 
     public ASCIIConversion() {
@@ -38,6 +38,7 @@ public class ASCIIConversion {
         WritableImage newImage = new WritableImage(targetWidth, targetHeight);
 
         PixelWriter writer = newImage.getPixelWriter();
+
         for (int i = 0; i < targetWidth; i++) {
 
             for (int j = 0; j < targetHeight; j++) {
@@ -51,18 +52,16 @@ public class ASCIIConversion {
         }
 
 
-        return newImage;
+        return sourceImage = newImage;
     }
 
     public String[][] createRgbMatrix() {
 
-        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 5, (int) sourceImage.getHeight() / 5);
 
-        int width = (int) resizedImage.getWidth();
-        int height = (int) resizedImage.getHeight();
+        PixelReader targetImage = sourceImage.getPixelReader();
 
-
-        PixelReader targetImage = resizedImage.getPixelReader();
+        int width = (int) sourceImage.getWidth();
+        int height = (int) sourceImage.getHeight();
 
         String[][] pixelMatrix = new String[width][height];
 
@@ -88,10 +87,9 @@ public class ASCIIConversion {
 
     public int[][] createBrightnessMatrix() {
 
-        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 4, (int) sourceImage.getHeight() / 4);
 
-        int width = (int) resizedImage.getWidth();
-        int height = (int) resizedImage.getHeight();
+        int width = (int) sourceImage.getWidth();
+        int height = (int) sourceImage.getHeight();
 
         String[][] rgbMatrix = createRgbMatrix();
         int[][] brightnessMatrix = new int[width][height];
@@ -118,10 +116,8 @@ public class ASCIIConversion {
 
     public char[][] createAsciiMatrix() {
 
-        Image resizedImage = resize(sourceImage, (int) sourceImage.getWidth() / 4, (int) sourceImage.getHeight() / 4);
-
-        int width = (int) resizedImage.getWidth();
-        int height = (int) resizedImage.getHeight();
+        int width = (int) sourceImage.getWidth();
+        int height = (int) sourceImage.getHeight();
 
         int[][] brightnessMatrix = createBrightnessMatrix();
         char[][] asciiMatrix = new char[width][height];
