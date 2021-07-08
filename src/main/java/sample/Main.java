@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -8,7 +9,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        Image img = new Image("file:ascii-pineapple.jpg");
         ASCIIConversion test = new ASCIIConversion();
+
+        test.resize(img, (int) img.getWidth() / 12, (int) img.getHeight() / 12);
+
         char[][] asciiMatrix = test.createAsciiMatrix();
 
         for (int i = 0; i < asciiMatrix.length; i++) {
