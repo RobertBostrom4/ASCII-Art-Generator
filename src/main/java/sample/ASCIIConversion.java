@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.scene.image.*;
 import javafx.scene.paint.Color;
 import org.imgscalr.Scalr;
@@ -19,13 +20,11 @@ public class ASCIIConversion {
         this.asciiCharacters = "\"`^\\\",:;Il!i~+_-?][}{1)(|\\\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$\"".toCharArray();
     }
 
-    public Image resize(Image source, int targetWidth, int targetHeight) {
+    public void resize(int targetWidth, int targetHeight) {
 
-
-        int width = (int) source.getWidth();
-        int height = (int) source.getHeight();
 
         BufferedImage img = null;
+
         try {
             img = ImageIO.read(new File("C:\\Users\\rober\\IdeaProjects\\ASCII Art generator\\ascii-pineapple.jpg"));
         } catch (IOException e) {
@@ -33,8 +32,6 @@ public class ASCIIConversion {
         }
         BufferedImage imgRescaled = Scalr.resize(img, targetWidth, targetHeight);
 
-
-        PixelReader targetImage = source.getPixelReader();
         WritableImage newImage = new WritableImage(targetWidth, targetHeight);
 
         PixelWriter writer = newImage.getPixelWriter();
@@ -51,12 +48,11 @@ public class ASCIIConversion {
 
         }
 
-
-        return sourceImage = newImage;
+        sourceImage = newImage;
     }
 
     public String[][] createRgbMatrix() {
-
+        System.out.println(sourceImage.getWidth());
 
         PixelReader targetImage = sourceImage.getPixelReader();
 

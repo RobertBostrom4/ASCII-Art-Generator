@@ -12,7 +12,7 @@ public class Main extends Application {
         Image img = new Image("file:ascii-pineapple.jpg");
         ASCIIConversion test = new ASCIIConversion();
 
-        test.resize(img, (int) img.getWidth() / 12, (int) img.getHeight() / 12);
+        test.resize((int) img.getWidth() / 10, (int) img.getHeight() / 10);
 
         char[][] asciiMatrix = test.createAsciiMatrix();
 
