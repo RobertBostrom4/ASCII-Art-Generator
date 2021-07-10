@@ -52,7 +52,6 @@ public class ASCIIConversion {
     }
 
     public String[][] createRgbMatrix() {
-        System.out.println(sourceImage.getWidth());
 
         PixelReader targetImage = sourceImage.getPixelReader();
 
@@ -64,7 +63,6 @@ public class ASCIIConversion {
         for (int i = 0; i < width; i++) {
 
             for (int j = 0; j < height; j++) {
-
 
                 Color newColor = targetImage.getColor(i, j);
 
@@ -103,7 +101,7 @@ public class ASCIIConversion {
                 int third = Integer.parseInt(valuesAsArray[2].trim());
 
 
-                brightnessMatrix[i][j] = (first + second + third) / 3;
+                brightnessMatrix[i][j] = ((first + second + third) / 3);
             }
         }
 
