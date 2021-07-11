@@ -12,23 +12,10 @@ public class Main extends Application {
         Image img = new Image("file:ascii-pineapple.jpg");
         ASCIIConversion test = new ASCIIConversion();
 
-        test.resize((int) img.getWidth() / 10, (int) img.getHeight() / 10);
-
-        char[][] asciiMatrix = test.createAsciiMatrix();
-
-        for (int i = 0; i < asciiMatrix.length; i++) {
-            for (int j = 0; j < asciiMatrix[j].length; j++) {
+        test.resize((int) img.getWidth() / 5, (int) img.getHeight() / 5);
+        test.createAsciiImage();
 
 
-                for (int n = 0; n < 3; n++) {
-                    System.out.print(asciiMatrix[i][j]);
-
-                }
-
-
-            }
-            System.out.println();
-        }
 
 
     }
