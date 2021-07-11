@@ -15,7 +15,6 @@ public class Main extends Application {
         test.resize((int) img.getWidth() / 10, (int) img.getHeight() / 10);
 
         char[][] asciiMatrix = test.createAsciiMatrix();
-        String[][] ss = test.createRgbMatrix();
 
         for (int i = 0; i < asciiMatrix.length; i++) {
             for (int j = 0; j < asciiMatrix[j].length; j++) {
@@ -36,9 +35,9 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+
         launch(args);
     }
-
 
 
 }
