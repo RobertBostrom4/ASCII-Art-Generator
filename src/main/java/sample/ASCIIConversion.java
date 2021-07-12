@@ -88,7 +88,7 @@ public class ASCIIConversion {
 
             for (int i = 0; i < width; i++) {
 
-                int index = (brightnessMatrix[i][j] * asciiCharacters.length() - 1) / 255;
+                int index = (brightnessMatrix[i][j] * asciiCharacters.length()) / 255;
                 char asciiChar = asciiCharacters.charAt(index);
 
                 for (int n = 0; n < 3; n++) {
